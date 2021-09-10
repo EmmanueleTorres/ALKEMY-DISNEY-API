@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_09_10_145131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "casts", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "film_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_casts_on_character_id"
+    t.index ["film_id"], name: "index_casts_on_film_id"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.float "weight"
+    t.text "history"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "films", force: :cascade do |t|
+    t.string "title"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string "name"
+    t.bigint "film_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["film_id"], name: "index_genders_on_film_id"
+  end
+
+  add_foreign_key "casts", "characters"
+  add_foreign_key "casts", "films"
+  add_foreign_key "genders", "films"
 end
