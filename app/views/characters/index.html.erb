@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <h1>Personajes</h1>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Peso</th>
+      <th scope="col">Historia</th>
+    </tr>
+  </thead>
+  <% index = 1 %>
+  <% @characters.each do |character| %>
+    <tbody>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= character.name %></td>
+        <td><%= character.age %></td>
+        <td><%= character.weight.round(1) %></td>
+        <td><%= character.history %></td>
+      </tr>
+    </tbody>
+    <% index += 1 %>
+  <% end %>
+</table>
+</div>
