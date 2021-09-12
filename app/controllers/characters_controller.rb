@@ -1,11 +1,19 @@
 class CharactersController < ApplicationController
+  before_action :set_character, only: [:show, :edit, :update, :destroy]
 
   def index
-    @characters = Character.all
+    if params[:name].present?
+      @query = params[:name]
+      @characters = Character.where("name LIKE ?", "%" + @query + "%")
+    elsif params[:age].present?
+      @query = params[:age]
+      @characters = Character.where(age: @query)
+    else
+      @characters = Character.all
+    end
   end
 
   def show
-    @character = Character.find(params[:id])
   end
 
   def new
@@ -19,17 +27,14 @@ class CharactersController < ApplicationController
   end
 
   def edit
-    @character = Character.find(params[:id])
   end
   
   def update
-    @character = Character.find(params[:id])
     @character.update(character_params)
     redirect_to character_path(@character)
   end
   
   def destroy
-    @character = Character.find(params[:id])
     @character.destroy
     redirect_to characters_path
   end
