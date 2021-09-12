@@ -1,0 +1,7 @@
+<%= simple_form_for @character do |f| %>
+  <%= f.input :name, label: "Nombre" %>
+  <%= f.input :age, label: "Edad" %>
+  <%= f.input :weight, label: "Peso" %>
+  <%= f.input :history, label: "Historia" %>
+  <%= f.submit "Guardar", class: "btn btn-primary"%>
+<% end %>

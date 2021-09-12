@@ -1,6 +1,9 @@
 <div class="container mt-3">
-  <h1>Personajes</h1>
-  <table class="table">
+  <div class="d-flex align-items-center bd-highlight">
+    <h1 class="flex-grow-1 bd-highlight">Personajes</h1>
+    <%= link_to "+ Personaje", new_character_path, class: "btn btn-primary bd-highlight" %>
+  </div>
+  <table class="table mt-2">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -10,18 +13,16 @@
       <th scope="col">Historia</th>
     </tr>
   </thead>
-  <% index = 1 %>
   <% @characters.each do |character| %>
     <tbody>
       <tr>
-        <th scope="row"><%= index %></th>
-        <td><%= character.name %></td>
+        <th scope="row"><%=character.id %></th>
+        <td><%= link_to character.name, character_path(character.id) %></td>
         <td><%= character.age %></td>
         <td><%= character.weight.round(1) %></td>
         <td><%= character.history %></td>
       </tr>
     </tbody>
-    <% index += 1 %>
   <% end %>
 </table>
 </div>
