@@ -8,6 +8,9 @@ class CharactersController < ApplicationController
     elsif params[:age].present?
       @query = params[:age]
       @characters = Character.where(age: @query)
+    elsif params[:weight].present?
+      @query = params[:weight]
+      @characters = Character.where(weight: @query)
     else
       @characters = Character.all
     end
@@ -22,8 +25,13 @@ class CharactersController < ApplicationController
   
   def create
     @character = Character.new(character_params)
-    @character.save
-    redirect_to character_path(@character)
+    if @character.save
+      flash[:success] = "Object successfully created"
+      redirect_to character_path(@character)
+    else
+      flash[:error] = "Something went wrong"
+      render 'new'
+    end
   end
 
   def edit
