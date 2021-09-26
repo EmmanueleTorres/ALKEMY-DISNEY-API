@@ -1,0 +1,5 @@
+<%= simple_form_for @film do |f| %>
+  <%= f.input :title, label: "Título" %>
+  <%= f.input :rating, label: "Rating" %>
+  <%= f.submit "Guardar", class: "btn btn-primary"%>
+<% end %>

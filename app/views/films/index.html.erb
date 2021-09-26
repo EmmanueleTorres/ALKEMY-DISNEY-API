@@ -1,0 +1,21 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center bd-highlight">
+    <h1 class="flex-grow-1 bd-highlight">Películas</h1>
+    <%= link_to "+ Pelicula", new_film_path, class: "btn btn-primary bd-highlight" %>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @films.each do |film| %>
+      <a href="<%= film_path(film)%>">
+        <div class="col">
+          <div class="card mb-3">
+            <img src="https://clarovideocdn5.clarovideo.net/PELICULAS/SHREKDWA/EXPORTACION_WEB/SS/SHREKDWAWHORIZONTAL.jpg?size=675x380" class="card-img-top" alt="shrek">
+            <div class="card-body">
+              <h5 class="card-title"><%= film.title %></h5>
+              <p class="card-text"><%= film.created_at %></p>
+            </div>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
+</div>

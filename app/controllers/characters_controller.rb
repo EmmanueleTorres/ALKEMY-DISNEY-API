@@ -8,7 +8,7 @@ class CharactersController < ApplicationController
     elsif params[:age].present?
       @query = params[:age]
       @characters = Character.where(age: @query)
-    elsif params[:weight].present?
+    elsif params[:weight].present? #aqui debe ir el filtro de films
       @query = params[:weight]
       @characters = Character.where(weight: @query)
     else
@@ -26,10 +26,8 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     if @character.save
-      flash[:success] = "Object successfully created"
       redirect_to character_path(@character)
     else
-      flash[:error] = "Something went wrong"
       render 'new'
     end
   end

@@ -1,0 +1,12 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center bd-highlight">
+    <div class="flex-grow-1 bd-highlight">
+      <h1 class="fs-1 pb-0"><%= @film.title %></h1>
+    </div>
+    <div class="bd-highlight">
+      <%= link_to "Editar", edit_film_path(@film), class: "btn btn-primary" %>
+      <%= link_to "Borrar" , film_path(@film), method: :delete, data: { confirm: "¿Está seguro?" }, class: "btn btn-danger ms-2" %>
+      <%= link_to "Volver", films_path, class: "btn btn-secondary ms-2" %>
+    </div>
+  </div>
+</div>

@@ -3,26 +3,19 @@
     <h1 class="flex-grow-1 bd-highlight">Personajes</h1>
     <%= link_to "+ Personaje", new_character_path, class: "btn btn-primary bd-highlight" %>
   </div>
-  <table class="table mt-2">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Edad</th>
-      <th scope="col">Peso</th>
-      <th scope="col">Historia</th>
-    </tr>
-  </thead>
-  <% @characters.each do |character| %>
-    <tbody>
-      <tr>
-        <th scope="row"><%=character.id %></th>
-        <td><%= link_to character.name, character_path(character.id) %></td>
-        <td><%= character.age %></td>
-        <td><%= character.weight.round(1) %></td>
-        <td><%= character.history %></td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @characters.each do |character| %>
+      <a href="<%=character_path(character) %>">
+        <div class="col">
+          <div class="card mb-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyLgTuEkTjO_rvIsmza1qKPqFwZdP-R3EKBg&usqp=CAU" class="card-img-top" alt="mickey">
+            <div class="card-body">
+              <h5 class="card-title"><%= character.name %></h5>
+              <p class="card-text"><%= character.history %></p>
+            </div>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
 </div>
