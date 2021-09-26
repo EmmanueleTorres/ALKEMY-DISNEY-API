@@ -8,7 +8,7 @@
       <a href="<%=character_path(character) %>">
         <div class="col">
           <div class="card mb-3">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyLgTuEkTjO_rvIsmza1qKPqFwZdP-R3EKBg&usqp=CAU" class="card-img-top" alt="mickey">
+            <%= cl_image_tag character.photo.key, height: 162, width: 288, crop: :fill, class: "card-img-top" %>
             <div class="card-body">
               <h5 class="card-title"><%= character.name %></h5>
               <p class="card-text"><%= character.history %></p>
