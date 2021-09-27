@@ -8,7 +8,7 @@
       <a href="<%= film_path(film)%>">
         <div class="col">
           <div class="card mb-3">
-            <img src="https://clarovideocdn5.clarovideo.net/PELICULAS/SHREKDWA/EXPORTACION_WEB/SS/SHREKDWAWHORIZONTAL.jpg?size=675x380" class="card-img-top" alt="shrek">
+            <%= cl_image_tag film.photo.key, class: "card-img-top" %>
             <div class="card-body">
               <h5 class="card-title"><%= film.title %></h5>
               <p class="card-text"><%= film.created_at %></p>
