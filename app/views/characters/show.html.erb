@@ -25,4 +25,17 @@
       </tr>
     </tbody>
   </table>
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-2">
+    <% @character.films.each do |film| %>
+      <% cast = Cast.find_by(film: film, character: @character) %>
+      <div class="col">
+        <div class="card mb-3">
+          <%= cl_image_tag film.photo.key, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= film.title %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

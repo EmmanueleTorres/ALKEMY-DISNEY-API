@@ -1,5 +1,6 @@
 class Character < ApplicationRecord
   has_many :casts
+  has_many :films, through: :casts
   has_one_attached :photo
 
   validates :name, uniqueness: true, presence: :true

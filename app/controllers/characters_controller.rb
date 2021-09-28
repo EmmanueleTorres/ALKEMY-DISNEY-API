@@ -17,6 +17,7 @@ class CharactersController < ApplicationController
   end
 
   def show
+    @cast = Cast.new
   end
 
   def new

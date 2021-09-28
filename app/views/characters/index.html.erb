@@ -5,13 +5,12 @@
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @characters.each do |character| %>
-      <a href="<%=character_path(character) %>">
+      <a href="<%=character_path(character) %>" class="text-decoration-none">
         <div class="col">
           <div class="card mb-3">
             <%= cl_image_tag character.photo.key, class: "card-img-top" %>
             <div class="card-body">
               <h5 class="card-title"><%= character.name %></h5>
-              <p class="card-text"><%= character.history %></p>
             </div>
           </div>
         </div>

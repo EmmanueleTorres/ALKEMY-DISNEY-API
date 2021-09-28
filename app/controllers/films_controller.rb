@@ -6,6 +6,7 @@ class FilmsController < ApplicationController
   end
 
   def show
+    @cast = Cast.new
   end
 
   def new

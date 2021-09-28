@@ -4,9 +4,26 @@
       <h1 class="fs-1 pb-0"><%= @film.title %></h1>
     </div>
     <div class="bd-highlight">
-      <%= link_to "Editar", edit_film_path(@film), class: "btn btn-primary" %>
+      <%= link_to '+ Personaje', new_film_cast_path(@film), class: "btn btn-primary"  %>
+      <%= link_to "Editar", edit_film_path(@film), class: "btn btn-primary ms-2" %>
       <%= link_to "Borrar" , film_path(@film), method: :delete, data: { confirm: "¿Está seguro?" }, class: "btn btn-danger ms-2" %>
       <%= link_to "Volver", films_path, class: "btn btn-secondary ms-2" %>
     </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-2">
+    <% @film.characters.each do |character| %>
+      <% cast = Cast.find_by(film: @film, character: character) %>
+      <div class="col">
+        <div class="card mb-3">
+          <%= cl_image_tag character.photo.key, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= character.name %></h5>
+          </div>
+          <div class="card-body">
+            <small class="text-right flex-shrink-0"><%= link_to 'delete', cast_path(cast), method: :delete, data: { confirm: "Are you sure you want to remove #{character.name} from #{@film.title}"}, class: 'text-danger' %></small>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
