@@ -1,0 +1,18 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center bd-highlight">
+    <h1 class="flex-grow-1 bd-highlight">Géneros</h1>
+    <!--<%= link_to "+ Pelicula", new_film_path, class: "btn btn-primary bd-highlight" %>-->
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @genres.each do |genre| %>
+      <div class="col">
+        <div class="card mb-3">
+          <%= cl_image_tag genre.photo.key, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= genre.name %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

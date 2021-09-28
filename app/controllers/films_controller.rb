@@ -16,10 +16,8 @@ class FilmsController < ApplicationController
   def create
     @film = Film.new(film_params)
     if @film.save
-      flash[:success] = "Object successfully created"
       redirect_to film_path(@film)
     else
-      flash[:error] = "Something went wrong"
       render 'new'
     end
   end
@@ -29,20 +27,16 @@ class FilmsController < ApplicationController
   
   def update
     if @film.update(film_params)
-      flash[:success] = "Object was successfully updated"
       redirect_to film_path(@film)
     else
-      flash[:error] = "Something went wrong"
       render 'edit'
     end
   end
 
   def destroy
     if @film.destroy
-      flash[:success] = 'Object was successfully deleted.'
       redirect_to films_url
     else
-      flash[:error] = 'Something went wrong'
       redirect_to films_url
     end
   end
@@ -50,7 +44,7 @@ class FilmsController < ApplicationController
   private
 
   def film_params
-    params.require(:film).permit(:title, :rating, :photo)
+    params.require(:film).permit(:title, :rating, :photo, :genre_id)
   end
 
   def set_film

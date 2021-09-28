@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :casts, only: [:new, :create]
   end
   resources :casts, only: :destroy
+  resources :genres, only: :index
 end
