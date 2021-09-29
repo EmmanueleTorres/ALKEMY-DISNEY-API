@@ -1,9 +1,19 @@
 <div class="container mt-3">
-  <h1>Agrega un personaje</h1>
-  <%= simple_form_for [@film, @cast] do |f| %>
-    <%= f.association :character %>
-    <%= f.input :comment  %>
-    <%= f.submit "Guardar", class: "btn btn-primary"%>
+  <% if params[:film_id].present? %>
+    <h1>Agrega un personaje</h1>
+    <%= simple_form_for [@film, @cast] do |f| %>
+      <%= f.association :character %>
+      <%= f.input :comment  %>
+      <%= f.submit "Guardar", class: "btn btn-primary"%>
+    <% end %>
+    <%= link_to "Cancelar", films_path, class: "btn btn-secondary mt-2" %>
+  <% else %>
+    <h1>Agrega una película</h1>
+    <%= simple_form_for [@character, @cast] do |f| %>
+      <%= f.association :film %>
+      <%= f.input :comment  %>
+      <%= f.submit "Guardar", class: "btn btn-primary"%>
+    <% end %>
+    <%= link_to "Cancelar", characters_path, class: "btn btn-secondary mt-2" %>
   <% end %>
-  <%= link_to "Cancelar", films_path, class: "btn btn-secondary mt-2" %>
 </div>
