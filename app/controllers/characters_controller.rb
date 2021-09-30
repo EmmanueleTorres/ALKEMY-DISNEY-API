@@ -3,14 +3,14 @@ class CharactersController < ApplicationController
 
   def index
     if params[:name].present?
-      @query = params[:name]
+      @query = params[:name].capitalize
       @characters = Character.where("name LIKE ?", "%" + @query + "%")
     elsif params[:age].present?
       @query = params[:age]
-      @characters = Character.where(age: @query)
-    elsif params[:weight].present? #aqui debe ir el filtro de films
-      @query = params[:weight]
-      @characters = Character.where(weight: @query)
+      @characters = Character.where("age = ?", @query)
+    elsif params[:film_id].present?
+      @query = params[:film_id]
+      @characters = Character.includes(:films).where('films.id = ?', @query).references(:films)
     else
       @characters = Character.all
     end
@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
     if @character.save
       redirect_to character_path(@character)
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -37,8 +37,11 @@ class CharactersController < ApplicationController
   end
   
   def update
-    @character.update(character_params)
-    redirect_to character_path(@character)
+    if @character.update(character_params)
+      redirect_to character_path(@character)
+    else
+      render :edit
+    end
   end
   
   def destroy

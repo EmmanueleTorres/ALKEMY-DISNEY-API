@@ -1,0 +1,19 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center bd-highlight">
+    <div class="flex-grow-1 bd-highlight">
+      <h1 class="fs-1 pb-0"><%= @genre.name %></h1>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-2">
+    <% @genre.films.each do |film| %>
+      <div class="col">
+        <div class="card mb-3">
+          <%= cl_image_tag film.photo.key, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= film.title %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

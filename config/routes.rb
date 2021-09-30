@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   end
   
   resources :casts, only: :destroy
-  resources :genres, only: :index
+  resources :genres, only: [:index, :show]
 end
